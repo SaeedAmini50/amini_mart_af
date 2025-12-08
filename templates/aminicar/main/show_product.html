@@ -1,0 +1,114 @@
+{% extends 'aminicar/main/base.html' %}
+{% load static%}
+{%  block content %} 
+<!-- SECTION -->
+<div class="section">
+<!-- container -->
+<div class="container">
+<!-- row -->
+<div class="row">
+<!-- Product main img -->
+
+<div class="col-md-5 col-md-push-2">
+<div id="product-main-img">
+<div class="product-preview">
+    <img src="{{product.image.url}} " alt="">
+</div>
+
+<div class="product-preview">
+    <img src="{{product.image1.url}}" alt="">
+</div>
+
+<div class="product-preview">
+    <img src="{{product.image2.url}} " alt="">
+</div>
+
+<div class="product-preview">
+    <img src="{{product.image3.url}}" alt="">
+</div>
+</div>
+</div>
+<!-- /Product main img -->
+
+<!-- Product thumb imgs -->
+<div class="col-md-2  col-md-pull-5">
+<div id="product-imgs">
+<div class="product-preview">
+<img src="{{product.image.url}}" alt="">
+</div>
+
+<div class="product-preview">
+    <img src="{{product.image1.url}}" alt="">
+</div>
+
+<div class="product-preview">
+    <img src="{{product.image2.url}}" alt="">
+</div>
+
+<div class="product-preview">
+    <img src="{{product.image3.url}}" alt="">
+</div>
+</div>
+</div>
+<!-- /Product thumb imgs -->
+
+<!-- Product details -->
+<div class="col-md-5">
+<div class="product-details">
+    {% csrf_token %}
+
+<h2 class="product-name">{{product.mark}}</h2>
+<div>
+<div class="product-rating">
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star-o"></i>
+</div>
+<a class="review-link" href="#">10 Review(s) | Add your review</a>
+</div>
+<div>
+<h3 class="product-price">£{{product.show_price}}  <del class="product-old-price">{{product.discounted_price}} £
+  </del></h3>
+<span class="product-available">In Stock</span>
+</div>
+<p class="explan_product">{{product.description}}</p>
+
+
+<div class="add-to-cart">
+    
+    <input type="hidden" class="prodt_id" value="{{ product.id }}">
+    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Add to Basket
+</button>
+</div>
+
+
+<ul class="product-btns">
+<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
+ 
+</ul>
+
+<ul class="product-links">
+<li>Share:</li>
+<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+<li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
+<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+<li><a href="#"><i class="fa fa-telegram"></i></a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<!-- /row-->
+</div>
+<!-- /container -->
+</div>
+<!-- /section -->
+  
+<!-- FOOTER -->
+
+<script src="{% static 'js/cart.js' %}" type="text/javascript"></script>
+
+{% endblock %}
+

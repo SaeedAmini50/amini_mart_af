@@ -1,0 +1,156 @@
+{% extends 'aminicar/main/base.html' %}
+{% load static %}
+{% block content %}
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">تسویه حساب</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="#">خانه</a></li>
+							<li class="active">تسویه حساب</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-7">
+						<!-- Billing Details -->
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">آدرس تحویل</h3>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="city" placeholder="شهر">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="address" placeholder="آدرس تحویل"">
+							</div>
+
+							<div class="form-group">
+  <input class="input" type="text" name="post-code" placeholder="کد پستی">
+							</div>
+							<div class="form-group">
+								<input class="input" type="tel" name="tel" placeholder=" شماره تلفن">
+							</div>
+							<div class="form-group">
+								<input class="input" type="email" name="email" placeholder=" آدرس ایمیل">
+							</div>
+							<div class="form-group">
+								<div class="input-checkbox">
+									<div class="caption">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+										<input class="input" type="password" name="password" placeholder="گذرواژه خود را وارد کنید">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Billing Details -->
+
+						<!-- Order notes -->
+						<div class="order-notes">
+							<textarea class="input" placeholder=" اطلاعات اضافی "></textarea>
+						</div>
+						<!-- /Order notes -->
+					</div>
+
+					<!-- Order Details -->
+					<div class="col-md-5 order-details">
+						<div class="section-title text-center">
+						<h3 class="title">مبلغ کل درخواست‌های شما {{ cart_total }}</h3>
+						</div>
+						<div class="order-summary">
+							<div class="order-col">
+								
+								
+								<div><strong>شماره قطعه</strong></div>
+<div><strong>نام و برند</strong></div>
+<div><strong>قیمت</strong></div>
+
+							</div>
+					{% csrf_token %}
+							{% for item in cart_items %}
+							<div class="order-products">
+								<div class="order-col">
+									
+									<div>{{ item.product.title }}</div>
+									<div>{{ item.product.mark }}</div>
+									<div>{{ item.quantity }}x ریال {{ item.product.price }}</div>
+								</div>
+								
+							</div>
+							{%endfor%}
+							
+							<div class="order-col">
+						<div>تحویل محصول</div>
+<div><strong>رایگان</strong></div>
+
+							</div>
+							<div class="order-col">
+								<div><strong>فهرست قیمت</strong></div>
+
+								<div><strong class="order-total">{{total_price}}</strong></div>
+							</div>
+						</div>
+						<div class="payment-method">
+							<div class="input-radio">
+								<input type="radio" name="payment" id="payment-1">
+								<label for="payment-1">
+									<span></span>
+									روش پرداخت: پی‌پال
+								</label>
+								<div class="caption">
+									<p>محصول شما در دو روز آینده تحویل خواهد شد.</p>
+								</div>
+							</div>
+			
+							<div class="input-radio">
+								<input type="radio" name="payment" id="payment-3">
+								<label for="payment-3">
+									<span></span>
+								روش پرداخت: کارت ویزا
+								</label>
+								<div class="caption">
+									<p>محصول شما در ۴ ساعت آینده تحویل خواهد شد.</p>
+
+								</div>
+							</div>
+						</div>
+						<div class="input-checkbox">
+							<input type="checkbox" id="terms">
+							<label for="terms">
+								<span></span>
+								<p>با <a href="#">شرایط و قوانین</a> موافقم.</p>
+
+							</label>
+						</div>
+						<a href="#" class="primary-btn order-submit">ثبت سفارش</a>
+					</div>
+					<!-- /Order Details -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+  
+		<!-- FOOTER -->
+		<script src="{% static 'js/cart.js' %}" type="text/javascript"></script>
+
+		{% endblock %}
+		
+		
