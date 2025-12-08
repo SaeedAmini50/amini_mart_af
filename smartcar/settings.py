@@ -19,7 +19,7 @@ DEBUG = True
 if DEBUG:
     EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
-ALLOWED_HOSTS = ['hyundai-parts.onrender.com','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['hyundai-parts.onrender.com','localhost','127.0.0.1','amini-mart-af.onrender.com']
 
 # Application definition
 
