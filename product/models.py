@@ -27,6 +27,7 @@ class Product(models.Model):
     name= models.CharField(max_length=200, null=True) 
     description = models.TextField(blank=True, null=True)
     port = models.CharField(max_length=150, null=False, unique=True)
+    size = models.CharField(max_length=100, null=True, blank=True, verbose_name="سایز / اندازه")
     price = models.FloatField(blank=True, null=True)
     quantity = models.IntegerField(null=False, blank=False)
     mark = models.CharField(max_length=150, null=False)

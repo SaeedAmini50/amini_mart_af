@@ -73,6 +73,11 @@
   </del></h3>
 <span class="product-available">In Stock</span>
 </div>
+{% if product.size %}
+<div class="product-size" style="margin: 10px 0;">
+  <strong>سایز / اندازه:</strong> <span>{{product.size}}</span>
+</div>
+{% endif %}
 <p class="explan_product">{{product.description}}</p>
 
 

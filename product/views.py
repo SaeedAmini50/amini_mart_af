@@ -12,6 +12,12 @@ logger = logging.getLogger(__name__)
 def view_product(request):
     context = {}
     products = Product.objects.all()
+    
+    # فیلتر بر اساس size (اگر در query string باشد)
+    size_filter = request.GET.get('size')
+    if size_filter:
+        products = products.filter(size__icontains=size_filter)
+    
     context['products'] = products
     return render(request, 'aminicar/main/index.html', context)
 
@@ -20,9 +26,10 @@ def view_product(request):
  
 def product_detail(request, product_id):
     context = {}
-    product = Product.objects.get(id=product_id)
-
+    product = get_object_or_404(Product, id=product_id)
+    
     context['product'] = product
+    # size به صورت خودکار از product در دسترس است
 
     return render(request, 'aminicar/main/show_product.html', context)
 
