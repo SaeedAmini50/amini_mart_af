@@ -123,42 +123,128 @@
         <div id="tab1" class="tab-pane active">
           <div class="products-slick" data-nav="#slick-nav-1">
 
-    {% if products %}
-    {% for product in products %}
-   
-    <!-- product -->
-    <div id="products" class="product">
-      <div class="product-img">
-        <img src="{{product.image.url}}" alt="">
-        <div class="product-label">
-          <span class="sale">-5%</span>
-        </div>
-      </div>
-      <div class="product-body">
-        <p class="product-category">{{product.mark}}</p>
-        <h3 class="product-name"><a href="{%url 'product:product_detail' product_id=product.id%}">شماره قطعه<br>{{product.port}}<br>{% if product.size %}<span style="color: #666;">سایز: {{product.size}}</span><br>{% endif %}{{product.name}}</a></h3>
-        <h4 class="product-price">{{product.show_price}} AFN <del class="product-old-price">{{product.discounted_price}} AFN</del></h4>
-        <div class="product-rating">
-        </div>
-        <div class="product-btns">
-          <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">افزودن به علاقه‌مندی</span></button>
-          <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">مقایسه</span></button>
-          <button class="quick-view"><a href="{%url 'product:product_detail' product_id=product.id%}"><i class="fa fa-eye"></i></a><span class="tooltipp">نمایش سریع</span></button>
-        </div>
-      </div>
-      <div class="add-to-cart">
-        <input type="hidden" class="prodt_id" value="{{ product.id }}">
-        <button class="add-to-cart-btn" onclick="location.href='{% url 'product:product_detail' product.id %}'">
-          <i class="fa fa-eye"></i> نمایش محصول
-        </button>
-      </div>
-    </div>
-    <!-- /product -->
 
-    {% endfor %}
-    {% else %}
-    <h1>محصولی موجود نیست</h1>
-    {% endif %}
+									<!-- product -->
+									<div class="product">
+										<div class="product-img">
+											<img src="./img/product6.jpg" alt="">
+											<div class="product-label">
+												<span class="sale">-30%</span> <span class="new">NEW</span>
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-sumsong">تلویزیون</p>
+											<h3 class="product-name">
+												<a href="#">تلویزیون های  ساده و اسمارت و با اندازه های مختلف موجود هست</a>
+											</h3>
+
+											<div class="product-rating">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i>
+											</div>
+											
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn">
+												<i class="fa fa-shopping-cart"></i> add to cart
+											</button>
+										</div>
+									</div>
+									<!-- /product -->
+
+
+									<!-- product -->
+									<div class="product">
+										<div class="product-img">
+											<img src="./img/product6.jpg" alt="">
+											<div class="product-label">
+												<span class="sale">-25%</span> <span class="new">NEW</span>
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-sumsong">یخچال</p>
+											<h3 class="product-name">
+												<a href="#">انواع یخچال ها و با رنگ های مختلف و خصوصیات مختلف</a>
+											</h3>
+
+											<div class="product-rating">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i>
+											</div>
+											
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn">
+												<i class="fa fa-shopping-cart"></i> add to cart
+											</button>
+										</div>
+									</div>
+									<!-- /product -->
+
+                  
+									<!-- product -->
+									<div class="product">
+										<div class="product-img">
+											<img src="./img/product6.jpg" alt="">
+											<div class="product-label">
+												<span class="sale">-20%</span> <span class="new">NEW</span>
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-sumsong">لباسشویی</p>
+											<h3 class="product-name">
+												<a href="#">  ماشین های لباسشویی با وزن های مختلف و با رنگ سفید و فولادی موجود هست                        </a>
+											</h3>
+
+											<div class="product-rating">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i>
+											</div>
+											
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn">
+												<i class="fa fa-shopping-cart"></i> add to cart
+											</button>
+										</div>
+									</div>
+									<!-- /product -->
+
+                  
+									<!-- product -->
+									<div class="product">
+										<div class="product-img">
+											<img src="./img/product6.jpg" alt="">
+											<div class="product-label">
+												<span class="sale">-15%</span> <span class="new">NEW</span>
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-sumsong">پودر مایع شوینده برای لباسشویی</p>
+											<h3 class="product-name">
+انواع پورد و مایع های شستشو و نرم کننده و خوشبو کننده با اندازه های مختلف موجود هست
+<a href="#"> </a>
+											</h3>
+											<div class="product-rating">
+												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+													class="fa fa-star"></i>
+											</div>
+											
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn">
+												<i class="fa fa-shopping-cart"></i> نمایش محصولات
+											</button>
+										</div>
+									</div>
+									<!-- /product -->
+
+
+
 
   </div>
   </div>
