@@ -6,6 +6,7 @@ from aminicar.models import Account
 from django.conf import settings
 from django.contrib import messages 
 from django.shortcuts import get_object_or_404
+from product.models import Product
 
 
 
@@ -68,6 +69,23 @@ def show_product(request):
     
     # رندر کردن صفحه HTML
     return render(request, 'aminicar/main/show_product.html')
+
+def search_product(request):
+    context = {}
+    products = Product.objects.all()
+    
+    # فیلتر بر اساس mark (برند)
+    mark_filter = request.GET.get('mark')
+    if mark_filter:
+        products = products.filter(mark__icontains=mark_filter)
+    
+    # فیلتر بر اساس size (سایز)
+    size_filter = request.GET.get('size')
+    if size_filter:
+        products = products.filter(size__icontains=size_filter)
+    
+    context['products'] = products
+    return render(request, 'aminicar/main/search_product.html', context)
 
 
 

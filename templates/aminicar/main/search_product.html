@@ -1,0 +1,253 @@
+{% extends 'aminicar/main/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      
+      <div id="store" class="col-md-3">
+        <!-- aside Widget -->
+        <div class="aside">
+          <h3 class="aside-title">پیدا کردن مارک محصولات</h3>
+          <div class="checkbox-filter">
+            <form method="GET" action="{% url 'aminicar:search_product' %}">
+              {% if request.GET.size %}<input type="hidden" name="size" value="{{ request.GET.size }}">{% endif %}
+              <div class="input-radio">
+                <input type="radio" name="mark" value="samsung" onchange="this.form.submit()" id="brand-7" {% if request.GET.mark == 'samsung' %}checked{% endif %}>
+                <label for="brand-7">
+                  <span></span>
+                  SAMSUNG
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="mark" value="LG" onchange="this.form.submit()" id="brand-8" {% if request.GET.mark == 'LG' %}checked{% endif %}>
+                <label for="brand-8">
+                  <span></span>
+                  LG
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="mark" value="sony" onchange="this.form.submit()" id="brand-9" {% if request.GET.mark == 'sony' %}checked{% endif %}>
+                <label for="brand-9">
+                  <span></span>
+                  SONY
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="mark" value="panasonic" onchange="this.form.submit()" id="brand-10" {% if request.GET.mark == 'panasonic' %}checked{% endif %}>
+                <label for="brand-10">
+                  <span></span>
+                  panasonic
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="mark" value="philips" onchange="this.form.submit()" id="brand-11" {% if request.GET.mark == 'philips' %}checked{% endif %}>
+                <label for="brand-11">
+                  <span></span>
+                  philips
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="mark" value="BLAUPUNKT" onchange="this.form.submit()" id="brand-12" {% if request.GET.mark == 'BLAUPUNKT' %}checked{% endif %}>
+                <label for="brand-12">
+                  <span></span>
+                  BLAUPUNKT
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="mark" value="TCL" onchange="this.form.submit()" id="brand-13" {% if request.GET.mark == 'TCL' %}checked{% endif %}>
+                <label for="brand-13">
+                  <span></span>
+                  TCL
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="mark" value="toshiba" onchange="this.form.submit()" id="brand-14" {% if request.GET.mark == 'toshiba' %}checked{% endif %}>
+                <label for="brand-14">
+                  <span></span>
+                  TOSHIBA
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="mark" value="EKO" onchange="this.form.submit()" id="brand-15" {% if request.GET.mark == 'EKO' %}checked{% endif %}>
+                <label for="brand-15">
+                  <span></span>
+                  EKO
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <!-- aside Widget -->
+        <div class="aside">
+          <h3 class="aside-title">پیدا کردن سایز ماشین لباسشویی</h3>
+          <div class="checkbox-filter">
+            <form method="GET" action="{% url 'aminicar:search_product' %}">
+              {% if request.GET.mark %}<input type="hidden" name="mark" value="{{ request.GET.mark }}">{% endif %}
+              <div class="input-radio">
+                <input type="radio" name="size" value="7 kg" onchange="this.form.submit()" id="brand-1" {% if request.GET.size == '7 kg' %}checked{% endif %}>
+                <label for="brand-1">
+                  <span></span>
+                  7 kg
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="size" value="7.5 kg" onchange="this.form.submit()" id="brand-2" {% if request.GET.size == '7.5 kg' %}checked{% endif %}>
+                <label for="brand-2">
+                  <span></span>
+                  7.5 kg
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="size" value="8 kg" onchange="this.form.submit()" id="brand-3" {% if request.GET.size == '8 kg' %}checked{% endif %}>
+                <label for="brand-3">
+                  <span></span>
+                  8 kg
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="size" value="9 kg" onchange="this.form.submit()" id="brand-4" {% if request.GET.size == '9 kg' %}checked{% endif %}>
+                <label for="brand-4">
+                  <span></span>
+                  9 kg
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="size" value="12 kg" onchange="this.form.submit()" id="brand-6" {% if request.GET.size == '12 kg' %}checked{% endif %}>
+                <label for="brand-6">
+                  <span></span>
+                  12 kg
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /aside Widget -->
+
+        <!-- aside Widget -->
+        <div class="aside">
+          <h3 class="aside-title">پیدا کردن سایز تلویزیون</h3>
+          <div class="checkbox-filter">
+            <form method="GET" action="{% url 'aminicar:search_product' %}">
+              {% if request.GET.mark %}<input type="hidden" name="mark" value="{{ request.GET.mark }}">{% endif %}
+              <div class="input-radio">
+                <input type="radio" name="size" value="32 inch" onchange="this.form.submit()" id="brand-16" {% if request.GET.size == '32 inch' %}checked{% endif %}>
+                <label for="brand-16">
+                  <span></span>
+                  32 inch
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="size" value="40 inch" onchange="this.form.submit()" id="brand-17" {% if request.GET.size == '40 inch' %}checked{% endif %}>
+                <label for="brand-17">
+                  <span></span>
+                  40 inch
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="size" value="43 inch" onchange="this.form.submit()" id="brand-18" {% if request.GET.size == '43 inch' %}checked{% endif %}>
+                <label for="brand-18">
+                  <span></span>
+                  43 inch
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="size" value="50 inch" onchange="this.form.submit()" id="brand-19" {% if request.GET.size == '50 inch' %}checked{% endif %}>
+                <label for="brand-19">
+                  <span></span>
+                  50 inch
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="size" value="55 inch" onchange="this.form.submit()" id="brand-20" {% if request.GET.size == '55 inch' %}checked{% endif %}>
+                <label for="brand-20">
+                  <span></span>
+                  55 inch
+                </label>
+              </div>
+              <div class="input-radio">
+                <input type="radio" name="size" value="65 inch" onchange="this.form.submit()" id="brand-21" {% if request.GET.size == '65 inch' %}checked{% endif %}>
+                <label for="brand-21">
+                  <span></span>
+                  65 inch
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /aside Widget -->
+      </div>
+
+      <!-- store products -->
+      <div class="col-md-9">
+        <div class="row">
+          {% if products %}
+            {% for product in products %}
+              <!-- product -->
+              <div class="col-md-4 col-xs-6">
+                <div class="product">
+                  <div class="product-img">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                  </div>
+                  <div class="product-body">
+                    <p class="product-category">{{ product.mark }}</p>
+                    <h3 class="product-name">
+                      <a href="{% url 'product:product_detail' product_id=product.id %}">
+                        {{ product.name }} 
+                        {% if product.size %}
+                          <span style="color:red">{{ product.size }}</span>
+                        {% endif %}
+                      </a>
+                    </h3>
+                    <h4 class="product-price">AF {{ product.show_price }}</h4>
+                    <div class="product-rating">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star-o"></i>
+                    </div>
+                    <div class="product-btns">
+                      <button class="add-to-wishlist">
+                        <a href="#"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></a>
+                      </button>
+                      <button class="quick-view">
+                        <a href="{% url 'product:product_detail' product_id=product.id %}"><i class="fa fa-eye"></i></a>
+                        <span class="tooltipp">quick view</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="add-to-cart">
+                    <input type="hidden" class="prodt_id" value="{{ product.id }}">
+                    <button class="add-to-cart-btn">
+                      <i class="fa fa-shopping-cart"></i> add to cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /product -->
+            {% endfor %}
+          {% else %}
+            <div class="col-md-12">
+              <p style="text-align: center; padding: 20px;">محصولی یافت نشد</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <!-- /store products -->
+
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<script src="{% static 'js/cart.js' %}" type="text/javascript"></script>
+
+{% endblock %}

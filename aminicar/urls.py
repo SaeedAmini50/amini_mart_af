@@ -14,7 +14,8 @@ H3C10028164,
 errorpage,
 edit_account_view,
 not_find,
-logout_view)
+logout_view,
+search_product)
   
 app_name = 'aminicar'  
 
@@ -26,7 +27,7 @@ urlpatterns = [
         path('signin/', register_signin , name='signin'),
        path('signup/', register_signup , name='signup'),
         path('base/', base , name='base'),
-       
+       path('search_product/', search_product , name='search_product'),
          path('H2630035505/', H2630035505 , name='H2630035505'),
        path('H319102H000/', H319102H000 , name='H319102H000'),
        path('H2351025250/', H2351025250 , name='H2351025250'),
