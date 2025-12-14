@@ -74,6 +74,11 @@ def search_product(request):
     context = {}
     products = Product.objects.all()
     
+    # فیلتر بر اساس category (دسته‌بندی)
+    category_filter = request.GET.get('category')
+    if category_filter:
+        products = products.filter(category__title__icontains=category_filter)
+    
     # فیلتر بر اساس mark (برند)
     mark_filter = request.GET.get('mark')
     if mark_filter:
@@ -85,6 +90,7 @@ def search_product(request):
         products = products.filter(size__icontains=size_filter)
     
     context['products'] = products
+    context['current_category'] = category_filter
     return render(request, 'aminicar/main/search_product.html', context)
 
 
