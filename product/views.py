@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from .models import Product ,Cart
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import json
 from django.contrib import messages 
 from django.shortcuts import get_object_or_404
 import logging
+import zipfile
+import os
+from django.conf import settings
+from io import BytesIO
 
 
 logger = logging.getLogger(__name__)
@@ -123,3 +127,108 @@ def update_cart(request):
     except Exception as e:
         logger.error(f"Error updating cart: {e}")
         return JsonResponse({'status': "Error occurred"}, status=500)
+
+
+def download_product_images(request, product_id):
+    """دانلود تمام عکس‌های محصول به صورت ZIP"""
+    product = get_object_or_404(Product, id=product_id)
+    
+    # ایجاد یک فایل ZIP در حافظه
+    zip_buffer = BytesIO()
+    added_files = set()  # برای جلوگیری از تکراری شدن فایل‌ها
+    
+    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+        # لیست تمام فیلدهای عکس
+        image_fields = ['image', 'image1', 'image2', 'image3', 'image4']
+        
+        for field_name in image_fields:
+            image_field = getattr(product, field_name, None)
+            if image_field and image_field.name:
+                try:
+                    # مسیر کامل فایل
+                    image_path = os.path.join(settings.MEDIA_ROOT, image_field.name)
+                    
+                    # بررسی وجود فایل
+                    if os.path.exists(image_path):
+                        # نام فایل برای ZIP (با پیشوند برای جلوگیری از تکراری)
+                        base_filename = os.path.basename(image_field.name)
+                        # اگر فایل قبلاً اضافه شده، نام را تغییر می‌دهیم
+                        if base_filename in added_files:
+                            name, ext = os.path.splitext(base_filename)
+                            filename = f"{name}_{field_name}{ext}"
+                        else:
+                            filename = base_filename
+                        
+                        zip_file.write(image_path, filename)
+                        added_files.add(base_filename)
+                except Exception as e:
+                    logger.error(f"Error adding {field_name} to zip: {e}")
+                    continue
+    
+    # بررسی اینکه آیا فایلی اضافه شده است
+    if len(added_files) == 0:
+        messages.error(request, 'هیچ عکسی برای دانلود موجود نیست.')
+        return redirect('product:product_detail', product_id=product_id)
+    
+    # تنظیم response برای دانلود
+    zip_buffer.seek(0)
+    response = HttpResponse(zip_buffer.read(), content_type='application/zip')
+    # استفاده از slug برای نام فایل (امن‌تر از title)
+    safe_filename = product.slug if hasattr(product, 'slug') else str(product.id)
+    response['Content-Disposition'] = f'attachment; filename="{safe_filename}_aminimart_product_images.zip"'
+    
+    return response
+
+
+def download_current_image(request, product_id):
+    """دانلود عکس فعلی که نمایش داده می‌شود"""
+    product = get_object_or_404(Product, id=product_id)
+    
+    # دریافت index عکس از query parameter (0 برای image, 1 برای image1, و غیره)
+    image_index = request.GET.get('index', '0')
+    
+    try:
+        image_index = int(image_index)
+    except ValueError:
+        image_index = 0
+    
+    # لیست فیلدهای عکس
+    image_fields = ['image', 'image1', 'image2', 'image3', 'image4']
+    
+    # بررسی محدوده معتبر
+    if image_index < 0 or image_index >= len(image_fields):
+        image_index = 0
+    
+    # دریافت فیلد عکس
+    field_name = image_fields[image_index]
+    image_field = getattr(product, field_name, None)
+    
+    if not image_field or not image_field.name:
+        messages.error(request, 'عکس مورد نظر یافت نشد.')
+        return redirect('product:product_detail', product_id=product_id)
+    
+    # مسیر کامل فایل
+    image_path = os.path.join(settings.MEDIA_ROOT, image_field.name)
+    
+    if not os.path.exists(image_path):
+        messages.error(request, 'فایل عکس یافت نشد.')
+        return redirect('product:product_detail', product_id=product_id)
+    
+    # خواندن فایل و ارسال به عنوان response
+    with open(image_path, 'rb') as f:
+        image_data = f.read()
+    
+    # تعیین نوع محتوا بر اساس پسوند فایل
+    content_type = 'image/jpeg'  # پیش‌فرض
+    if image_path.lower().endswith('.png'):
+        content_type = 'image/png'
+    elif image_path.lower().endswith('.gif'):
+        content_type = 'image/gif'
+    
+    # نام فایل برای دانلود
+    filename = os.path.basename(image_field.name)
+    
+    response = HttpResponse(image_data, content_type=content_type)
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    
+    return response
