@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,7 +18,7 @@ DEBUG = True
 if DEBUG:
     EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
-ALLOWED_HOSTS = ['hyundai-parts.onrender.com','localhost','127.0.0.1','amini-mart-af.onrender.com']
+ALLOWED_HOSTS = ['aminimart.af','localhost','127.0.0.1']
 
 # Application definition
 
