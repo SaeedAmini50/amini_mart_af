@@ -11,7 +11,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.6
       with:
-        server: ftp.aminimart.af
+        server: aminimart.af
         username: ${{ secrets.ftp_password }}
         password: ${{ secrets.ftp_password }}
         
