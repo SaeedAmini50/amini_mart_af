@@ -12,6 +12,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.6
       with:
         server: aminimart.af
-        username: myFtpUserName
+        username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
         server-dir: /AMINI_MARAF/
