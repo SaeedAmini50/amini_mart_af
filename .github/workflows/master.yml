@@ -14,6 +14,6 @@ jobs:
         server: ftp.aminimart.af
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /aminimartaf/
+        server-dir: /amini_mart_af_2
         protocol: ftp
         passive: true
