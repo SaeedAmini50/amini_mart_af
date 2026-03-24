@@ -18,7 +18,7 @@ DEBUG = True
 if DEBUG:
     EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
-ALLOWED_HOSTS = ['aminimart.af','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['www.aminimart.af','aminimart.af']
 
 # Application definition
 
