@@ -1,4 +1,4 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/aminimar/AminiMartAF/
+    - export DEPLOYPATH=/home2/aminimar/AminiMartAF/
     - /bin/cp * $DEPLOYPATH
