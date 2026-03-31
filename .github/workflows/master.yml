@@ -1,8 +1,16 @@
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home2/aminimar/AminiMartAF/
-    - /bin/cp -R * $DEPLOYPATH
-    - cd $DEPLOYPATH
-    - /usr/local/bin/python3.12.11 manage.py migrate --noinput
-    - /usr/local/bin/python3.12.11 manage.py collectstatic --noinput
-
+on: push
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      with:
+        server: ftp.aminimart.af
+        username: aminimar
+        password: ${{ secrets.ftp_password }}
