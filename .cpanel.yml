@@ -2,7 +2,3 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home2/aminimar/aminimart_af/
     - /bin/cp -R * $DEPLOYPATH
-    - cd $DEPLOYPATH
-    - /usr/local/bin/python3.12.11 manage.py migrate --noinput
-    - /usr/local/bin/python3.12.11 manage.py collectstatic --noinput
-
